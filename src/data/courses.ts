@@ -211,6 +211,66 @@ const aimlNodes: CourseNode[] = [
     category: 'Production',
     skills: ['MLflow', 'Docker', 'Model Deployment'],
   },
+  {
+    id: 'aiml-reinforcement',
+    label: 'Reinforcement Learning',
+    difficulty: 8,
+    estimatedHours: 50,
+    prerequisites: ['aiml-unsupervised', 'aiml-prob'],
+    description: 'Markov Decision Processes, Q-learning, policy gradients, actor-critic methods, multi-armed bandits.',
+    courseUrl: 'https://www.coursera.org/specializations/reinforcement-learning',
+    coursePlatform: 'Coursera (University of Alberta)',
+    category: 'Advanced',
+    skills: ['Q-Learning', 'Policy Gradients', 'MDP'],
+  },
+  {
+    id: 'aiml-time-series',
+    label: 'Time Series Forecasting',
+    difficulty: 7,
+    estimatedHours: 35,
+    prerequisites: ['aiml-supervised', 'aiml-prob'],
+    description: 'ARIMA, Prophet, LSTM for time series, seasonal decomposition, forecasting evaluation metrics.',
+    courseUrl: 'https://www.udemy.com/course/time-series-analysis-and-forecasting-in-python/',
+    coursePlatform: 'Udemy',
+    category: 'Domain ML',
+    skills: ['ARIMA', 'Prophet', 'LSTM Time Series'],
+  },
+  {
+    id: 'aiml-computer-vision',
+    label: 'Advanced Computer Vision',
+    difficulty: 8,
+    estimatedHours: 50,
+    prerequisites: ['aiml-cnn'],
+    description: 'Image segmentation, instance segmentation, semantic segmentation, pose estimation, 3D vision.',
+    courseUrl: 'https://www.coursera.org/learn/computer-vision-basics',
+    coursePlatform: 'Coursera (University of Buffalo)',
+    category: 'Vision',
+    skills: ['Image Segmentation', 'Object Detection', '3D Vision'],
+  },
+  {
+    id: 'aiml-recommendation',
+    label: 'Recommendation Systems',
+    difficulty: 7,
+    estimatedHours: 40,
+    prerequisites: ['aiml-unsupervised', 'aiml-supervised'],
+    description: 'Collaborative filtering, content-based filtering, matrix factorization, neural collaborative filtering.',
+    courseUrl: 'https://www.coursera.org/learn/recommender-systems',
+    coursePlatform: 'Coursera (University of Minnesota)',
+    category: 'Domain ML',
+    skills: ['Collaborative Filtering', 'Matrix Factorization', 'Embeddings'],
+  },
+  {
+    id: 'aiml-feature-eng',
+    label: 'Advanced Feature Engineering',
+    difficulty: 7,
+    estimatedHours: 35,
+    prerequisites: ['aiml-ml-fundamentals', 'aiml-pandas'],
+    description: 'Feature extraction, feature selection, feature interaction, domain-specific feature engineering.',
+    courseUrl: 'https://www.kaggle.com/learn/feature-engineering',
+    coursePlatform: 'Kaggle',
+    category: 'Core ML',
+    skills: ['Feature Extraction', 'Feature Selection', 'Domain Engineering'],
+  },
 ];
 
 // ==================== DSA Track ====================
@@ -395,6 +455,66 @@ const dsaNodes: CourseNode[] = [
     category: 'System Design',
     skills: ['System Design', 'Scalability', 'Distributed Systems'],
   },
+  {
+    id: 'dsa-bit-manipulation',
+    label: 'Bit Manipulation',
+    difficulty: 5,
+    estimatedHours: 15,
+    prerequisites: ['dsa-complexity'],
+    description: 'Bitwise operations, bit tricks, bitmasks, counting bits, XOR patterns, binary arithmetic.',
+    courseUrl: 'https://leetcode.com/explore/learn/card/bit-manipulation/',
+    coursePlatform: 'LeetCode',
+    category: 'Fundamentals',
+    skills: ['Bitwise Operations', 'Bitmasks', 'Binary Arithmetic'],
+  },
+  {
+    id: 'dsa-string-algorithms',
+    label: 'String Algorithms',
+    difficulty: 6,
+    estimatedHours: 25,
+    prerequisites: ['dsa-arrays'],
+    description: 'Pattern matching, KMP algorithm, Z-algorithm, Rabin-Karp, suffix arrays, string compression.',
+    courseUrl: 'https://www.coursera.org/specializations/algorithms',
+    coursePlatform: 'Coursera (Stanford)',
+    category: 'Algorithms',
+    skills: ['Pattern Matching', 'KMP', 'String Hashing'],
+  },
+  {
+    id: 'dsa-competitive',
+    label: 'Competitive Programming',
+    difficulty: 8,
+    estimatedHours: 40,
+    prerequisites: ['dsa-backtracking', 'dsa-greedy'],
+    description: 'Contest strategies, problem solving patterns, optimization techniques, time/space tricks.',
+    courseUrl: 'https://codeforces.com/blog/entry/53088',
+    coursePlatform: 'Codeforces',
+    category: 'Competition',
+    skills: ['Contest Strategy', 'Optimization', 'Problem Solving'],
+  },
+  {
+    id: 'dsa-number-theory',
+    label: 'Number Theory & Math',
+    difficulty: 7,
+    estimatedHours: 30,
+    prerequisites: ['dsa-complexity'],
+    description: 'GCD, modular arithmetic, prime generation, Fermat theorem, Chinese Remainder Theorem.',
+    courseUrl: 'https://www.coursera.org/learn/number-theory-cryptography',
+    coursePlatform: 'Coursera (UC San Diego)',
+    category: 'Mathematics',
+    skills: ['Modular Arithmetic', 'Primes', 'Cryptography Basics'],
+  },
+  {
+    id: 'dsa-geometry',
+    label: 'Computational Geometry',
+    difficulty: 8,
+    estimatedHours: 35,
+    prerequisites: ['dsa-graphs', 'dsa-complexity'],
+    description: 'Convex hull, line intersection, polygon area, closest pair, sweep line algorithms.',
+    courseUrl: 'https://www.udemy.com/course/computational-geometry/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Convex Hull', 'Sweep Line', 'Geometry Algorithms'],
+  },
 ];
 
 // ==================== DevOps Track ====================
@@ -543,9 +663,836 @@ const devopsNodes: CourseNode[] = [
     category: 'SRE',
     skills: ['SRE', 'Incident Management', 'Chaos Engineering'],
   },
+  {
+    id: 'devops-database',
+    label: 'Database Management & Optimization',
+    difficulty: 6,
+    estimatedHours: 35,
+    prerequisites: ['devops-linux', 'devops-networking'],
+    description: 'Database design, indexing, query optimization, replication, backup/recovery, database security.',
+    courseUrl: 'https://www.udemy.com/course/the-complete-hands-on-introduction-to-apache-cassandra/',
+    coursePlatform: 'Udemy',
+    category: 'Data Management',
+    skills: ['Database Design', 'Query Optimization', 'Replication'],
+  },
+  {
+    id: 'devops-api-gateway',
+    label: 'API Design & API Gateway',
+    difficulty: 6,
+    estimatedHours: 25,
+    prerequisites: ['devops-networking', 'devops-docker'],
+    description: 'RESTful API design, API versioning, rate limiting, Kong, AWS API Gateway, authentication.',
+    courseUrl: 'https://www.udemy.com/course/rest-api/',
+    coursePlatform: 'Udemy',
+    category: 'Infrastructure',
+    skills: ['API Design', 'API Gateway', 'Authentication'],
+  },
+  {
+    id: 'devops-k8s-advanced',
+    label: 'Kubernetes Advanced Patterns',
+    difficulty: 8,
+    estimatedHours: 40,
+    prerequisites: ['devops-kubernetes'],
+    description: 'Custom resources, operators, StatefulSets, DaemonSets, network policies, admission controllers.',
+    courseUrl: 'https://www.edx.org/course/introduction-to-kubernetes',
+    coursePlatform: 'edX',
+    category: 'Orchestration',
+    skills: ['Kubernetes Operators', 'CRDs', 'Advanced Scheduling'],
+  },
+  {
+    id: 'devops-observability',
+    label: 'Distributed Tracing & Logging',
+    difficulty: 7,
+    estimatedHours: 30,
+    prerequisites: ['devops-monitoring'],
+    description: 'OpenTelemetry, Jaeger, Datadog, centralized logging, correlation IDs, trace sampling.',
+    courseUrl: 'https://www.udemy.com/course/the-complete-hands-on-introduction-to-opentelemetry/',
+    coursePlatform: 'Udemy',
+    category: 'Observability',
+    skills: ['OpenTelemetry', 'Jaeger', 'Log Aggregation'],
+  },
+  {
+    id: 'devops-gcp',
+    label: 'Google Cloud Platform (GCP)',
+    difficulty: 7,
+    estimatedHours: 45,
+    prerequisites: ['devops-cloud', 'devops-cicd'],
+    description: 'GCP services, Compute Engine, App Engine, Cloud Run, Firestore, BigQuery, deployment.',
+    courseUrl: 'https://www.coursera.org/professional-certificates/cloud-engineering-gcp',
+    coursePlatform: 'Coursera (Google Cloud)',
+    category: 'Cloud',
+    skills: ['GCP', 'Cloud Functions', 'Firestore'],
+  },
+  {
+    id: 'devops-service-mesh',
+    label: 'Service Mesh (Istio)',
+    difficulty: 8,
+    estimatedHours: 35,
+    prerequisites: ['devops-kubernetes'],
+    description: 'Istio architecture, traffic management, security policies, distributed tracing integration.',
+    courseUrl: 'https://www.udemy.com/course/istio-hands-on-for-kubernetes/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced Infrastructure',
+    skills: ['Istio', 'Traffic Management', 'Network Policies'],
+  },
 ];
 
-// Generate edges from prerequisites
+// ==================== Web Development Track ====================
+const webdevNodes: CourseNode[] = [
+  {
+    id: 'web-html-css',
+    label: 'HTML, CSS & Responsive Design',
+    difficulty: 1,
+    estimatedHours: 25,
+    prerequisites: [],
+    description: 'HTML5 semantics, CSS flexbox, grid, responsive design, mobile-first approach, accessibility.',
+    courseUrl: 'https://www.codecademy.com/learn/learn-html-css',
+    coursePlatform: 'Codecademy',
+    category: 'Foundation',
+    skills: ['HTML5', 'CSS3', 'Responsive Design'],
+  },
+  {
+    id: 'web-javascript',
+    label: 'JavaScript Fundamentals',
+    difficulty: 2,
+    estimatedHours: 40,
+    prerequisites: ['web-html-css'],
+    description: 'ES6+, DOM manipulation, async/await, promises, event handling, closures, prototypes.',
+    courseUrl: 'https://www.udemy.com/course/the-complete-javascript-course-2023-from-zero-to-expert/',
+    coursePlatform: 'Udemy',
+    category: 'Foundation',
+    skills: ['ES6+', 'DOM', 'Async Programming'],
+  },
+  {
+    id: 'web-react',
+    label: 'React & Component Architecture',
+    difficulty: 4,
+    estimatedHours: 35,
+    prerequisites: ['web-javascript'],
+    description: 'Functional components, hooks, state management (Redux), Context API, component lifecycle.',
+    courseUrl: 'https://www.udemy.com/course/react-the-complete-guide-incl-redux/',
+    coursePlatform: 'Udemy',
+    category: 'Frontend Framework',
+    skills: ['React', 'Hooks', 'State Management'],
+  },
+  {
+    id: 'web-nextjs',
+    label: 'Next.js & Server-Side Rendering',
+    difficulty: 5,
+    estimatedHours: 30,
+    prerequisites: ['web-react'],
+    description: 'App router, API routes, server components, image optimization, deployment, ISR/SSG.',
+    courseUrl: 'https://www.udemy.com/course/next-js-react-the-complete-guide/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced Frontend',
+    skills: ['Next.js', 'SSR', 'API Routes'],
+  },
+  {
+    id: 'web-typescript',
+    label: 'TypeScript for Web Development',
+    difficulty: 4,
+    estimatedHours: 20,
+    prerequisites: ['web-javascript'],
+    description: 'Type annotations, interfaces, generics, decorators, type narrowing, strict mode.',
+    courseUrl: 'https://www.typescriptlang.org/docs/',
+    coursePlatform: 'Official Docs',
+    category: 'Foundation',
+    skills: ['TypeScript', 'Type Safety', 'Interfaces'],
+  },
+  {
+    id: 'web-node',
+    label: 'Node.js & Backend Fundamentals',
+    difficulty: 3,
+    estimatedHours: 30,
+    prerequisites: ['web-javascript'],
+    description: 'Express.js, middleware, routing, error handling, async operations, file uploads.',
+    courseUrl: 'https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/',
+    coursePlatform: 'Udemy',
+    category: 'Backend',
+    skills: ['Node.js', 'Express', 'Middleware'],
+  },
+  {
+    id: 'web-databases',
+    label: 'Databases & SQL/NoSQL',
+    difficulty: 4,
+    estimatedHours: 28,
+    prerequisites: ['web-node'],
+    description: 'SQL (PostgreSQL), NoSQL (MongoDB), schema design, migrations, ORMs (Prisma, Mongoose).',
+    courseUrl: 'https://www.udemy.com/course/the-complete-sql-bootcamp/',
+    coursePlatform: 'Udemy',
+    category: 'Backend',
+    skills: ['SQL', 'NoSQL', 'Database Design'],
+  },
+  {
+    id: 'web-authentication',
+    label: 'Authentication & Authorization',
+    difficulty: 5,
+    estimatedHours: 20,
+    prerequisites: ['web-node', 'web-databases'],
+    description: 'JWT, sessions, OAuth2, password hashing (bcrypt), role-based access control.',
+    courseUrl: 'https://www.udemy.com/course/nodejs-complete-guide/',
+    coursePlatform: 'Udemy',
+    category: 'Security',
+    skills: ['JWT', 'OAuth2', 'RBAC'],
+  },
+  {
+    id: 'web-api-design',
+    label: 'RESTful API Design',
+    difficulty: 5,
+    estimatedHours: 22,
+    prerequisites: ['web-node', 'web-databases'],
+    description: 'REST principles, HTTP methods, status codes, versioning, pagination, rate limiting.',
+    courseUrl: 'https://www.udemy.com/course/rest-api/',
+    coursePlatform: 'Udemy',
+    category: 'Backend',
+    skills: ['REST API', 'API Design', 'HTTP'],
+  },
+  {
+    id: 'web-testing',
+    label: 'Testing (Unit, Integration, E2E)',
+    difficulty: 5,
+    estimatedHours: 25,
+    prerequisites: ['web-react', 'web-node'],
+    description: 'Jest, React Testing Library, Cypress, Playwright, test-driven development.',
+    courseUrl: 'https://www.udemy.com/course/jest-testing-library/',
+    coursePlatform: 'Udemy',
+    category: 'DevOps',
+    skills: ['Jest', 'Testing', 'TDD'],
+  },
+  {
+    id: 'web-deployment',
+    label: 'Deployment & DevOps',
+    difficulty: 6,
+    estimatedHours: 25,
+    prerequisites: ['web-nextjs', 'web-node'],
+    description: 'Docker, GitHub Actions, Vercel, AWS deployment, environment management, CI/CD.',
+    courseUrl: 'https://www.udemy.com/course/docker-mastery/',
+    coursePlatform: 'Udemy',
+    category: 'DevOps',
+    skills: ['Docker', 'CI/CD', 'Deployment'],
+  },
+  {
+    id: 'web-fullstack',
+    label: 'Full-Stack Architecture',
+    difficulty: 7,
+    estimatedHours: 40,
+    prerequisites: ['web-nextjs', 'web-databases', 'web-api-design'],
+    description: 'System design, scalability, caching (Redis), message queues, microservices patterns.',
+    courseUrl: 'https://www.educative.io/courses/grokking-modern-system-design-interview-for-engineers-managers',
+    coursePlatform: 'Educative',
+    category: 'Advanced',
+    skills: ['System Design', 'Scalability', 'Architecture'],
+  },
+  {
+    id: 'web-performance',
+    label: 'Web Performance Optimization',
+    difficulty: 6,
+    estimatedHours: 18,
+    prerequisites: ['web-nextjs', 'web-react'],
+    description: 'Bundling, code splitting, lazy loading, image optimization, metrics (Core Web Vitals).',
+    courseUrl: 'https://www.udemy.com/course/performance-optimization-web-development/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced Frontend',
+    skills: ['Performance', 'Optimization', 'Metrics'],
+  },
+];
+
+// ==================== Mobile Development Track ====================
+const mobileNodes: CourseNode[] = [
+  {
+    id: 'mobile-foundations',
+    label: 'Mobile Development Fundamentals',
+    difficulty: 2,
+    estimatedHours: 20,
+    prerequisites: [],
+    description: 'Mobile OS architecture, app lifecycle, threading, memory management concepts.',
+    courseUrl: 'https://www.coursera.org/specializations/android-app-development',
+    coursePlatform: 'Coursera',
+    category: 'Foundation',
+    skills: ['Mobile Architecture', 'App Lifecycle', 'Threading'],
+  },
+  {
+    id: 'mobile-react-native',
+    label: 'React Native Basics',
+    difficulty: 3,
+    estimatedHours: 30,
+    prerequisites: ['mobile-foundations'],
+    description: 'React Native setup, components, navigation (React Navigation), platform specifics.',
+    courseUrl: 'https://www.udemy.com/course/react-native-the-practical-guide/',
+    coursePlatform: 'Udemy',
+    category: 'Cross-Platform',
+    skills: ['React Native', 'Cross-Platform', 'Navigation'],
+  },
+  {
+    id: 'mobile-swift',
+    label: 'Swift & iOS Development',
+    difficulty: 4,
+    estimatedHours: 35,
+    prerequisites: ['mobile-foundations'],
+    description: 'Swift basics, UIKit/SwiftUI, auto layout, Core Data, networking, app distribution.',
+    courseUrl: 'https://www.udemy.com/course/ios-app-development-bootcamp/',
+    coursePlatform: 'Udemy',
+    category: 'iOS',
+    skills: ['Swift', 'SwiftUI', 'iOS Development'],
+  },
+  {
+    id: 'mobile-kotlin',
+    label: 'Kotlin & Android Development',
+    difficulty: 4,
+    estimatedHours: 35,
+    prerequisites: ['mobile-foundations'],
+    description: 'Kotlin language, Android SDK, Jetpack Compose, ViewModel, LiveData, Room database.',
+    courseUrl: 'https://www.udemy.com/course/the-complete-android-14-developer-course/',
+    coursePlatform: 'Udemy',
+    category: 'Android',
+    skills: ['Kotlin', 'Jetpack', 'Android Development'],
+  },
+  {
+    id: 'mobile-state-mgmt',
+    label: 'State Management & Architecture',
+    difficulty: 5,
+    estimatedHours: 25,
+    prerequisites: ['mobile-react-native'],
+    description: 'Redux, Context, MobX, Redux Saga, MVVM, clean architecture, dependency injection.',
+    courseUrl: 'https://www.udemy.com/course/react-native-advanced/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Redux', 'Architecture', 'State Management'],
+  },
+  {
+    id: 'mobile-networking',
+    label: 'Networking & APIs in Mobile',
+    difficulty: 5,
+    estimatedHours: 20,
+    prerequisites: ['mobile-react-native', 'mobile-swift'],
+    description: 'HTTP/HTTPS, REST APIs, GraphQL, Websockets, offline sync, data persistence.',
+    courseUrl: 'https://www.udemy.com/course/graphql-apollo-client-complete-guide/',
+    coursePlatform: 'Udemy',
+    category: 'Backend Integration',
+    skills: ['GraphQL', 'APIs', 'Networking'],
+  },
+  {
+    id: 'mobile-testing',
+    label: 'Mobile App Testing',
+    difficulty: 5,
+    estimatedHours: 18,
+    prerequisites: ['mobile-react-native', 'mobile-kotlin'],
+    description: 'Unit testing, integration testing, Detox/Espresso, mock data, error handling.',
+    courseUrl: 'https://www.udemy.com/course/testing-react-native-app-with-jest-and-detox/',
+    coursePlatform: 'Udemy',
+    category: 'Quality',
+    skills: ['Testing', 'Jest', 'E2E Testing'],
+  },
+  {
+    id: 'mobile-performance',
+    label: 'Mobile Performance & Optimization',
+    difficulty: 6,
+    estimatedHours: 20,
+    prerequisites: ['mobile-react-native'],
+    description: 'Profiling, memory leaks, battery optimization, native modules, performance monitoring.',
+    courseUrl: 'https://www.udemy.com/course/react-native-performance/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Profiling', 'Optimization', 'Performance'],
+  },
+  {
+    id: 'mobile-deployment',
+    label: 'App Store & Play Store Deployment',
+    difficulty: 5,
+    estimatedHours: 15,
+    prerequisites: ['mobile-swift', 'mobile-kotlin'],
+    description: 'App Store deployment, Google Play Store, signing, certificates, app signing, updates.',
+    courseUrl: 'https://www.udemy.com/course/ios-app-store-deploy/',
+    coursePlatform: 'Udemy',
+    category: 'Distribution',
+    skills: ['App Store', 'Deployment', 'Certificates'],
+  },
+  {
+    id: 'mobile-advanced',
+    label: 'Advanced Mobile Features',
+    difficulty: 6,
+    estimatedHours: 25,
+    prerequisites: ['mobile-state-mgmt'],
+    description: 'Push notifications, geolocation, camera, background tasks, sensors, accessibility.',
+    courseUrl: 'https://www.udemy.com/course/react-native-advanced-concepts/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Notifications', 'Sensors', 'Native APIs'],
+  },
+];
+
+// ==================== Cybersecurity Track ====================
+const cybersecNodes: CourseNode[] = [
+  {
+    id: 'cyber-networking',
+    label: 'Networking Fundamentals',
+    difficulty: 2,
+    estimatedHours: 30,
+    prerequisites: [],
+    description: 'OSI model, TCP/IP, protocols, packet analysis, Wireshark, network topology, subnetting.',
+    courseUrl: 'https://www.coursera.org/professional-certificates/google-it-support',
+    coursePlatform: 'Coursera (Google)',
+    category: 'Foundation',
+    skills: ['OSI Model', 'TCP/IP', 'Networking'],
+  },
+  {
+    id: 'cyber-linux-security',
+    label: 'Linux Security & Hardening',
+    difficulty: 3,
+    estimatedHours: 28,
+    prerequisites: ['cyber-networking'],
+    description: 'Linux security, user management, file permissions, SELinux, firewall (iptables), SSH.',
+    courseUrl: 'https://www.udemy.com/course/linux-security-and-hardening/',
+    coursePlatform: 'Udemy',
+    category: 'Foundation',
+    skills: ['Linux Security', 'Firewall', 'SSH'],
+  },
+  {
+    id: 'cyber-cryptography',
+    label: 'Cryptography Basics',
+    difficulty: 5,
+    estimatedHours: 28,
+    prerequisites: ['cyber-networking'],
+    description: 'Symmetric/asymmetric encryption, hashing, digital signatures, SSL/TLS, PKI.',
+    courseUrl: 'https://www.udemy.com/course/cryptography-from-scratch/',
+    coursePlatform: 'Udemy',
+    category: 'Core',
+    skills: ['Encryption', 'PKI', 'TLS/SSL'],
+  },
+  {
+    id: 'cyber-web-security',
+    label: 'Web Application Security',
+    difficulty: 5,
+    estimatedHours: 25,
+    prerequisites: ['cyber-networking'],
+    description: 'OWASP Top 10, SQL injection, XSS, CSRF, authentication flaws, secure coding practices.',
+    courseUrl: 'https://www.udemy.com/course/web-application-security/',
+    coursePlatform: 'Udemy',
+    category: 'Core',
+    skills: ['OWASP', 'Web Vulnerabilities', 'Secure Coding'],
+  },
+  {
+    id: 'cyber-penetration',
+    label: 'Penetration Testing & Ethical Hacking',
+    difficulty: 7,
+    estimatedHours: 40,
+    prerequisites: ['cyber-web-security', 'cyber-linux-security'],
+    description: 'Reconnaissance, scanning (Nmap), exploitation frameworks (Metasploit), reporting.',
+    courseUrl: 'https://www.udemy.com/course/penetration-testing/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Penetration Testing', 'Metasploit', 'Exploitation'],
+  },
+  {
+    id: 'cyber-incident-response',
+    label: 'Incident Response & Forensics',
+    difficulty: 6,
+    estimatedHours: 30,
+    prerequisites: ['cyber-linux-security', 'cyber-cryptography'],
+    description: 'Incident handling, digital forensics, log analysis, malware analysis, recovery.',
+    courseUrl: 'https://www.coursera.org/specializations/cyber-security-analyst',
+    coursePlatform: 'Coursera (Google)',
+    category: 'Core',
+    skills: ['Forensics', 'Log Analysis', 'Incident Handling'],
+  },
+  {
+    id: 'cyber-cloud-security',
+    label: 'Cloud & Kubernetes Security',
+    difficulty: 6,
+    estimatedHours: 28,
+    prerequisites: ['cyber-networking', 'cyber-cryptography'],
+    description: 'AWS/GCP/Azure security, IAM, container security, secrets management, RBAC.',
+    courseUrl: 'https://www.coursera.org/professional-certificates/google-cloud-security-engineer',
+    coursePlatform: 'Coursera (Google Cloud)',
+    category: 'Advanced',
+    skills: ['Cloud Security', 'Container Security', 'IAM'],
+  },
+  {
+    id: 'cyber-network-defense',
+    label: 'Network Defense & IDS/IPS',
+    difficulty: 6,
+    estimatedHours: 25,
+    prerequisites: ['cyber-linux-security'],
+    description: 'Firewalls, IDS/IPS, SIEM systems, anomaly detection, threat modeling.',
+    courseUrl: 'https://www.udemy.com/course/network-security-complete-course/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['IDS/IPS', 'SIEM', 'Threat Modeling'],
+  },
+  {
+    id: 'cyber-reverse-engineering',
+    label: 'Reverse Engineering & Malware Analysis',
+    difficulty: 8,
+    estimatedHours: 35,
+    prerequisites: ['cyber-penetration'],
+    description: 'Binary analysis, assembly language, debuggers, unpacking, malware identification.',
+    courseUrl: 'https://www.udemy.com/course/x86-assembly-and-reverse-engineering/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Reverse Engineering', 'Assembly', 'Debugging'],
+  },
+];
+
+// ==================== Data Science Track ====================
+const datascienceNodes: CourseNode[] = [
+  {
+    id: 'ds-python',
+    label: 'Python for Data Science',
+    difficulty: 2,
+    estimatedHours: 30,
+    prerequisites: [],
+    description: 'Python fundamentals, NumPy, Pandas, data cleaning, exploratory data analysis.',
+    courseUrl: 'https://www.coursera.org/specializations/python-data-science',
+    coursePlatform: 'Coursera',
+    category: 'Foundation',
+    skills: ['Python', 'Pandas', 'NumPy'],
+  },
+  {
+    id: 'ds-statistics',
+    label: 'Statistics & Probability',
+    difficulty: 4,
+    estimatedHours: 32,
+    prerequisites: ['ds-python'],
+    description: 'Descriptive stats, hypothesis testing, distributions, correlation, regression fundamentals.',
+    courseUrl: 'https://www.khanacademy.org/math/statistics-probability',
+    coursePlatform: 'Khan Academy',
+    category: 'Foundation',
+    skills: ['Statistics', 'Hypothesis Testing', 'Distributions'],
+  },
+  {
+    id: 'ds-visualization',
+    label: 'Data Visualization & Storytelling',
+    difficulty: 3,
+    estimatedHours: 20,
+    prerequisites: ['ds-python'],
+    description: 'Matplotlib, Seaborn, Tableau, interactive dashboards, data storytelling, communication.',
+    courseUrl: 'https://www.kaggle.com/learn/data-visualization',
+    coursePlatform: 'Kaggle',
+    category: 'Core',
+    skills: ['Visualization', 'Tableau', 'Dashboard Design'],
+  },
+  {
+    id: 'ds-sql',
+    label: 'SQL for Data Analysis',
+    difficulty: 3,
+    estimatedHours: 25,
+    prerequisites: ['ds-python'],
+    description: 'SQL queries, joins, aggregation, window functions, optimization, database analysis.',
+    courseUrl: 'https://www.udemy.com/course/the-complete-sql-bootcamp/',
+    coursePlatform: 'Udemy',
+    category: 'Foundation',
+    skills: ['SQL', 'Database', 'Query Optimization'],
+  },
+  {
+    id: 'ds-ml-basics',
+    label: 'Machine Learning for Analytics',
+    difficulty: 5,
+    estimatedHours: 35,
+    prerequisites: ['ds-statistics', 'ds-python'],
+    description: 'Classification, regression, clustering, feature engineering, model evaluation, scikit-learn.',
+    courseUrl: 'https://www.coursera.org/specializations/machine-learning',
+    coursePlatform: 'Coursera (Stanford)',
+    category: 'Core',
+    skills: ['Scikit-learn', 'ML', 'Feature Engineering'],
+  },
+  {
+    id: 'ds-bussiness-analytics',
+    label: 'Business Analytics & KPIs',
+    difficulty: 4,
+    estimatedHours: 22,
+    prerequisites: ['ds-python', 'ds-visualization'],
+    description: 'Metrics definition, business intelligence, A/B testing, ROI analysis, forecasting.',
+    courseUrl: 'https://www.udemy.com/course/business-analytics/',
+    coursePlatform: 'Udemy',
+    category: 'Business',
+    skills: ['Business Intelligence', 'Metrics', 'A/B Testing'],
+  },
+  {
+    id: 'ds-big-data',
+    label: 'Big Data Technologies',
+    difficulty: 6,
+    estimatedHours: 32,
+    prerequisites: ['ds-sql', 'ds-python'],
+    description: 'Spark, Hadoop, distributed computing, MapReduce, Hive, data warehousing.',
+    courseUrl: 'https://www.udemy.com/course/the-complete-hands-on-introduction-to-apache-spark/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Spark', 'Hadoop', 'Distributed Computing'],
+  },
+  {
+    id: 'ds-deep-learning',
+    label: 'Deep Learning for Analytics',
+    difficulty: 7,
+    estimatedHours: 40,
+    prerequisites: ['ds-ml-basics'],
+    description: 'Neural networks, CNN for image analysis, RNN for time series, autoencoders.',
+    courseUrl: 'https://www.coursera.org/specializations/deep-learning',
+    coursePlatform: 'Coursera (deeplearning.ai)',
+    category: 'Advanced',
+    skills: ['Deep Learning', 'CNN', 'RNN'],
+  },
+  {
+    id: 'ds-nlp',
+    label: 'NLP & Text Analytics',
+    difficulty: 6,
+    estimatedHours: 28,
+    prerequisites: ['ds-ml-basics'],
+    description: 'Text processing, sentiment analysis, topic modeling, word embeddings, NLP frameworks.',
+    courseUrl: 'https://www.coursera.org/specializations/natural-language-processing',
+    coursePlatform: 'Coursera (deeplearning.ai)',
+    category: 'Advanced',
+    skills: ['NLP', 'Text Mining', 'Sentiment Analysis'],
+  },
+  {
+    id: 'ds-product-analytics',
+    label: 'Product Analytics & Experiments',
+    difficulty: 5,
+    estimatedHours: 25,
+    prerequisites: ['ds-bussiness-analytics'],
+    description: 'User funnel analysis, retention metrics, cohort analysis, behavioral analytics, experimentation.',
+    courseUrl: 'https://www.reforge.com/',
+    coursePlatform: 'Reforge',
+    category: 'Business',
+    skills: ['Product Analytics', 'Funnels', 'Cohort Analysis'],
+  },
+];
+
+// ==================== Software Engineering & Design Patterns Track ====================
+const softwareengNodes: CourseNode[] = [
+  {
+    id: 'se-oop',
+    label: 'Object-Oriented Programming Mastery',
+    difficulty: 3,
+    estimatedHours: 28,
+    prerequisites: [],
+    description: 'Classes, inheritance, polymorphism, encapsulation, abstraction, SOLID principles intro.',
+    courseUrl: 'https://www.coursera.org/specializations/object-oriented-programming',
+    coursePlatform: 'Coursera',
+    category: 'Foundation',
+    skills: ['OOP', 'Inheritance', 'Polymorphism'],
+  },
+  {
+    id: 'se-solid',
+    label: 'SOLID Principles',
+    difficulty: 5,
+    estimatedHours: 20,
+    prerequisites: ['se-oop'],
+    description: 'Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion.',
+    courseUrl: 'https://www.udemy.com/course/solid-principles-object-oriented-design-architecture/',
+    coursePlatform: 'Udemy',
+    category: 'Core',
+    skills: ['SOLID', 'Software Design', 'Principles'],
+  },
+  {
+    id: 'se-design-patterns',
+    label: 'Gang of Four Design Patterns',
+    difficulty: 6,
+    estimatedHours: 35,
+    prerequisites: ['se-solid'],
+    description: 'Creational, structural, behavioral patterns: Singleton, Factory, Strategy, Observer, etc.',
+    courseUrl: 'https://www.udemy.com/course/design-patterns-course/',
+    coursePlatform: 'Udemy',
+    category: 'Core',
+    skills: ['Design Patterns', 'Architecture', 'Best Practices'],
+  },
+  {
+    id: 'se-clean-code',
+    label: 'Clean Code & Code Quality',
+    difficulty: 4,
+    estimatedHours: 22,
+    prerequisites: ['se-oop'],
+    description: 'Naming, functions, error handling, formatting, refactoring, technical debt, code reviews.',
+    courseUrl: 'https://www.udemy.com/course/writing-clean-code/',
+    coursePlatform: 'Udemy',
+    category: 'Foundation',
+    skills: ['Code Quality', 'Refactoring', 'Best Practices'],
+  },
+  {
+    id: 'se-architecture',
+    label: 'Software Architecture & Design',
+    difficulty: 7,
+    estimatedHours: 35,
+    prerequisites: ['se-design-patterns', 'se-solid'],
+    description: 'Layered, microservices, event-driven, domain-driven design, architectural decisions.',
+    courseUrl: 'https://www.educative.io/courses/grokking-systemdesign',
+    coursePlatform: 'Educative',
+    category: 'Advanced',
+    skills: ['Architecture', 'DDD', 'System Design'],
+  },
+  {
+    id: 'se-testing',
+    label: 'Software Testing Strategies',
+    difficulty: 5,
+    estimatedHours: 28,
+    prerequisites: ['se-oop'],
+    description: 'Unit testing, integration testing, TDD, mocking, test design, test coverage analysis.',
+    courseUrl: 'https://www.udemy.com/course/software-testing-masterclass/',
+    coursePlatform: 'Udemy',
+    category: 'Quality',
+    skills: ['Testing', 'TDD', 'Test Design'],
+  },
+  {
+    id: 'se-refactoring',
+    label: 'Refactoring Techniques',
+    difficulty: 6,
+    estimatedHours: 25,
+    prerequisites: ['se-clean-code', 'se-testing'],
+    description: 'Code smells, refactoring patterns, legacy code, continuous improvement, debt management.',
+    courseUrl: 'https://www.udemy.com/course/refactoring-techniques-advanced-course/',
+    coursePlatform: 'Udemy',
+    category: 'Core',
+    skills: ['Refactoring', 'Code Smells', 'Improvements'],
+  },
+  {
+    id: 'se-agile',
+    label: 'Agile Development & Methodologies',
+    difficulty: 4,
+    estimatedHours: 20,
+    prerequisites: [],
+    description: 'Scrum, Kanban, sprint planning, user stories, agile estimation, team coordination.',
+    courseUrl: 'https://www.coursera.org/specializations/agile-development',
+    coursePlatform: 'Coursera',
+    category: 'Methodology',
+    skills: ['Scrum', 'Kanban', 'Agile'],
+  },
+  {
+    id: 'se-leadership',
+    label: 'Technical Leadership & Communication',
+    difficulty: 5,
+    estimatedHours: 20,
+    prerequisites: [],
+    description: 'Team management, mentoring, communication, strategic thinking, decision making.',
+    courseUrl: 'https://www.udemy.com/course/engineering-leadership/',
+    coursePlatform: 'Udemy',
+    category: 'Leadership',
+    skills: ['Leadership', 'Communication', 'Mentoring'],
+  },
+];
+
+// ==================== Cloud Architecture Track ====================
+const cloudarchNodes: CourseNode[] = [
+  {
+    id: 'cloud-basics',
+    label: 'Cloud Computing Fundamentals',
+    difficulty: 2,
+    estimatedHours: 25,
+    prerequisites: [],
+    description: 'Cloud models (IaaS, PaaS, SaaS), cloud providers comparison, cost models, shared responsibility.',
+    courseUrl: 'https://www.coursera.org/specializations/cloud-computing',
+    coursePlatform: 'Coursera',
+    category: 'Foundation',
+    skills: ['Cloud Models', 'IaaS', 'PaaS'],
+  },
+  {
+    id: 'cloud-aws-core',
+    label: 'AWS Core Services',
+    difficulty: 4,
+    estimatedHours: 40,
+    prerequisites: ['cloud-basics'],
+    description: 'EC2, S3, RDS, VPC, IAM, Lambda, SNS/SQS, CloudWatch, autoscaling.',
+    courseUrl: 'https://www.udemy.com/course/aws-certified-solutions-architect-associate-saa-c03/',
+    coursePlatform: 'Udemy',
+    category: 'Core',
+    skills: ['AWS', 'EC2', 'S3', 'RDS'],
+  },
+  {
+    id: 'cloud-aws-advanced',
+    label: 'AWS Advanced Architecture',
+    difficulty: 6,
+    estimatedHours: 35,
+    prerequisites: ['cloud-aws-core'],
+    description: 'Multi-region, high availability, disaster recovery, cost optimization, security.',
+    courseUrl: 'https://www.udemy.com/course/aws-certified-solutions-architect-professional/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['High Availability', 'Disaster Recovery', 'Cost Optimization'],
+  },
+  {
+    id: 'cloud-serverless',
+    label: 'Serverless & Microservices',
+    difficulty: 5,
+    estimatedHours: 30,
+    prerequisites: ['cloud-aws-core'],
+    description: 'Lambda, API Gateway, microservices architecture, event-driven design, serverless patterns.',
+    courseUrl: 'https://www.udemy.com/course/aws-lambda-serverless-architecture/',
+    coursePlatform: 'Udemy',
+    category: 'Architecture',
+    skills: ['Lambda', 'Serverless', 'Microservices'],
+  },
+  {
+    id: 'cloud-containers',
+    label: 'Containers & Orchestration',
+    difficulty: 5,
+    estimatedHours: 35,
+    prerequisites: ['cloud-basics'],
+    description: 'Docker, ECS, EKS, Kubernetes on AWS, container networking, registry management.',
+    courseUrl: 'https://www.udemy.com/course/aws-ecs-fargate-docker-kubernetes-course/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Docker', 'ECS', 'EKS', 'Kubernetes'],
+  },
+  {
+    id: 'cloud-networking',
+    label: 'Cloud Networking & Security',
+    difficulty: 6,
+    estimatedHours: 30,
+    prerequisites: ['cloud-aws-core'],
+    description: 'VPC design, security groups, NACLs, VPN, CloudFront, WAF, DDoS protection.',
+    courseUrl: 'https://www.udemy.com/course/aws-vpc-and-networking/',
+    coursePlatform: 'Udemy',
+    category: 'Security',
+    skills: ['VPC', 'Networking', 'Security'],
+  },
+  {
+    id: 'cloud-data-analytics',
+    label: 'Cloud Data & Analytics',
+    difficulty: 6,
+    estimatedHours: 32,
+    prerequisites: ['cloud-aws-core'],
+    description: 'Redshift, Athena, Glue, EMR, data lakes, ETL pipelines, big data on cloud.',
+    courseUrl: 'https://www.udemy.com/course/aws-big-data/',
+    coursePlatform: 'Udemy',
+    category: 'Data',
+    skills: ['Redshift', 'Data Lakes', 'ETL'],
+  },
+  {
+    id: 'cloud-database',
+    label: 'Cloud Databases & Data Management',
+    difficulty: 5,
+    estimatedHours: 28,
+    prerequisites: ['cloud-aws-core'],
+    description: 'DynamoDB, DocumentDB, ElastiCache, backup/restore, replication, disaster recovery.',
+    courseUrl: 'https://www.udemy.com/course/aws-databases/',
+    coursePlatform: 'Udemy',
+    category: 'Data',
+    skills: ['DynamoDB', 'DocumentDB', 'Data Management'],
+  },
+  {
+    id: 'cloud-iac',
+    label: 'Infrastructure as Code (CloudFormation)',
+    difficulty: 6,
+    estimatedHours: 28,
+    prerequisites: ['cloud-aws-core'],
+    description: 'CloudFormation templates, stack management, change sets, nested stacks, CDK.',
+    courseUrl: 'https://www.udemy.com/course/aws-cloudformation/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['CloudFormation', 'Infrastructure as Code', 'CDK'],
+  },
+  {
+    id: 'cloud-multi-region',
+    label: 'Multi-Region & Global Architecture',
+    difficulty: 7,
+    estimatedHours: 30,
+    prerequisites: ['cloud-aws-advanced'],
+    description: 'Global load balancing, Route53, CloudFront, edge locations, global failover.',
+    courseUrl: 'https://www.udemy.com/course/aws-global-infrastructure/',
+    coursePlatform: 'Udemy',
+    category: 'Advanced',
+    skills: ['Route53', 'Global Architecture', 'Failover'],
+  },
+];
+
 function generateEdges(nodes: CourseNode[]): CourseEdge[] {
   const edges: CourseEdge[] = [];
   const nodeMap = new Map(nodes.map(n => [n.id, n]));
@@ -590,8 +1537,163 @@ export const tracks: Track[] = [
     nodes: devopsNodes,
     edges: generateEdges(devopsNodes),
   },
+  {
+    id: 'webdev',
+    name: 'Web Development',
+    description: 'HTML/CSS to full-stack systems — build scalable web applications',
+    icon: '',
+    nodes: webdevNodes,
+    edges: generateEdges(webdevNodes),
+  },
+  {
+    id: 'mobile',
+    name: 'Mobile Development',
+    description: 'React Native to native iOS/Android — cross-platform app development',
+    icon: '',
+    nodes: mobileNodes,
+    edges: generateEdges(mobileNodes),
+  },
+  {
+    id: 'cybersec',
+    name: 'Cybersecurity',
+    description: 'Networking to penetration testing — comprehensive security expertise',
+    icon: '',
+    nodes: cybersecNodes,
+    edges: generateEdges(cybersecNodes),
+  },
+  {
+    id: 'datascience',
+    name: 'Data Science & Analytics',
+    description: 'Python to advanced ML & NLP — data-driven decision making',
+    icon: '',
+    nodes: datascienceNodes,
+    edges: generateEdges(datascienceNodes),
+  },
+  {
+    id: 'softwareeng',
+    name: 'Software Engineering & Design',
+    description: 'OOP to architecture patterns — professional software development',
+    icon: '',
+    nodes: softwareengNodes,
+    edges: generateEdges(softwareengNodes),
+  },
+  {
+    id: 'cloudarch',
+    name: 'Cloud Architecture',
+    description: 'Cloud fundamentals to global AWS architecture — enterprise solutions',
+    icon: '',
+    nodes: cloudarchNodes,
+    edges: generateEdges(cloudarchNodes),
+  },
 ];
 
 export function getTrackById(trackId: string): Track | undefined {
   return tracks.find(t => t.id === trackId);
+}
+
+/**
+ * Filter courses based on skill level and time available
+ * Beginners get only foundation courses and limited options
+ * Intermediate get balanced mix
+ * Advanced get full access
+ */
+export function filterCoursesBySkillLevel(
+  nodes: CourseNode[],
+  skillLevel: number,
+  timeAvailable: number
+): CourseNode[] {
+  const maxWeeklyHours = 40; // Assume user can dedicate max 40 hours/week
+  const estimatedWeeks = timeAvailable / 24; // Convert hours to weeks (24 hours per week average)
+  
+  // Skill level 1: Beginner
+  if (skillLevel === 1) {
+    // Only foundation courses (difficulty 1-2), max 8-10 courses
+    const filtered = nodes
+      .filter(n => n.difficulty <= 2)
+      .sort((a, b) => a.difficulty - b.difficulty || a.estimatedHours - b.estimatedHours)
+      .slice(0, 8);
+    return filtered;
+  }
+  
+  // Skill level 2: Early Intermediate
+  if (skillLevel === 2) {
+    // Foundation + some intermediate (difficulty 1-4)
+    const filtered = nodes
+      .filter(n => n.difficulty <= 4)
+      .sort((a, b) => a.difficulty - b.difficulty)
+      .slice(0, 12);
+    return filtered;
+  }
+  
+  // Skill level 3: Mid Intermediate
+  if (skillLevel === 3) {
+    // Mix of all but advanced courses (difficulty 1-6)
+    const filtered = nodes
+      .filter(n => n.difficulty <= 6)
+      .sort((a, b) => a.difficulty - b.difficulty)
+      .slice(0, 15);
+    return filtered;
+  }
+  
+  // Skill level 4: Advanced Intermediate
+  if (skillLevel === 4) {
+    // Most courses except the hardest (difficulty 1-8)
+    const filtered = nodes
+      .filter(n => n.difficulty <= 8)
+      .sort((a, b) => a.difficulty - b.difficulty)
+      .slice(0, 18);
+    return filtered;
+  }
+  
+  // Skill level 5: Expert - full access
+  return nodes;
+}
+
+/**
+ * Get recommended track IDs based on skill level
+ * Beginners should focus on one track at a time
+ * Intermediate can explore related tracks
+ * Advanced can do multiple paths
+ */
+export function getRecommendedTracks(skillLevel: number): string[] {
+  if (skillLevel === 1) {
+    // Beginners: Choose ONE primary track
+    return ['aiml', 'dsa', 'webdev', 'datascience', 'softwareeng'];
+  }
+  if (skillLevel === 2) {
+    // Early intermediate: Two related tracks
+    return ['aiml', 'dsa', 'webdev', 'datascience', 'softwareeng', 'devops', 'cybersec'];
+  }
+  if (skillLevel === 3) {
+    // Mid intermediate: Multiple tracks available
+    return ['aiml', 'dsa', 'webdev', 'datascience', 'softwareeng', 'devops', 'cybersec', 'mobile', 'cloudarch'];
+  }
+  if (skillLevel === 4) {
+    // Advanced intermediate: All tracks
+    return tracks.map(t => t.id);
+  }
+  // Expert: All tracks
+  return tracks.map(t => t.id);
+}
+
+/**
+ * Estimate realistic learning timeline based on skill level
+ * Returns estimated weeks to complete track
+ */
+export function estimateTrackDuration(
+  trackId: string,
+  skillLevel: number,
+  timeAvailablePerWeek: number = 10
+): number {
+  const track = getTrackById(trackId);
+  if (!track) return 0;
+  
+  const filteredNodes = filterCoursesBySkillLevel(track.nodes, skillLevel, 1000);
+  const totalHours = filteredNodes.reduce((sum, n) => sum + n.estimatedHours, 0);
+  
+  // Skills accelerate learning - experts need ~30% less time
+  const skillMultiplier = 1 - (skillLevel - 1) * 0.05; // 1.0 for level 1, 0.8 for level 5
+  const adjustedHours = totalHours * skillMultiplier;
+  
+  return Math.ceil(adjustedHours / timeAvailablePerWeek);
 }

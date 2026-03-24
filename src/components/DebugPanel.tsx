@@ -4,7 +4,7 @@ import React, { useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/useStore';
 import { tracks } from '@/data/courses';
-import { Bug, List, XCircle, Brain, Dna, Mountain, Search } from 'lucide-react';
+import { Bug, List, XCircle, Dna, Mountain, Search } from 'lucide-react';
 import InfoTooltip from './InfoTooltip';
 
 export default function DebugPanel() {
@@ -70,31 +70,31 @@ export default function DebugPanel() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
-          className="step-description p-3 bg-indigo-500/10 border border-indigo-500/20 rounded-lg mb-4 text-sm text-indigo-100 leading-relaxed"
+          className="step-description p-3 bg-slate-700/5 border border-slate-700/10 rounded-lg mb-4 text-sm text-slate-700 leading-relaxed"
         >
-          <div className="font-semibold text-indigo-300 mb-2">Step {currentStep.stepNumber}: {currentStep.description}</div>
+          <div className="font-semibold text-slate-800 mb-2">Step {currentStep.stepNumber}: {currentStep.description}</div>
           {currentStep.decisionDetails && (
-            <div className="text-sm text-indigo-100 mb-2 pb-2 border-b border-indigo-500/20">
+            <div className="text-sm text-slate-700 mb-2 pb-2 border-b border-slate-700/10">
               {currentStep.decisionDetails}
             </div>
           )}
           {selectedAlgorithm === 'astar' && (
-            <div className="text-xs text-indigo-200/80">
+            <div className="text-xs text-slate-600">
               A* Search explores the most promising nodes first, balancing between cost from start and estimated cost to goal.
             </div>
           )}
           {selectedAlgorithm === 'csp' && (
-            <div className="text-xs text-indigo-200/80">
+            <div className="text-xs text-slate-600">
               Constraint Satisfaction Problem solving enforces constraints while exploring the solution space.
             </div>
           )}
           {selectedAlgorithm === 'hillClimbing' && (
-            <div className="text-xs text-indigo-200/80">
+            <div className="text-xs text-slate-600">
               Hill Climbing greedily selects neighbors with better fitness scores to climb toward optimal solutions.
             </div>
           )}
           {selectedAlgorithm === 'genetic' && (
-            <div className="text-xs text-indigo-200/80">
+            <div className="text-xs text-slate-600">
               Genetic Algorithm combines the best candidates through selection, crossover, and mutation.
             </div>
           )}
@@ -110,9 +110,9 @@ export default function DebugPanel() {
           </div>
           <div className="debug-node-info">
             <div className="debug-node-name">{currentNode.label}</div>
-            <div className="debug-node-meta text-sm text-indigo-200">
+            <div className="debug-node-meta text-sm text-slate-700">
               <div>Difficulty: {currentNode.difficulty}/10 • {currentNode.estimatedHours}h • {currentNode.category}</div>
-              {currentNode.description && <div className="mt-2 text-xs text-indigo-300/60">{currentNode.description}</div>}
+              {currentNode.description && <div className="mt-2 text-xs text-slate-600">{currentNode.description}</div>}
             </div>
           </div>
         </div>

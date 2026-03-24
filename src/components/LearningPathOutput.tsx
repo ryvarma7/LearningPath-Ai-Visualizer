@@ -88,8 +88,8 @@ export default function LearningPathOutput() {
               className="chart-bar"
               style={{
                 background: `linear-gradient(to top, 
-                  ${node!.difficulty <= 3 ? '#22c55e' : node!.difficulty <= 6 ? '#eab308' : '#ef4444'}, 
-                  ${node!.difficulty <= 3 ? '#16a34a' : node!.difficulty <= 6 ? '#ca8a04' : '#dc2626'})`,
+                  ${node!.difficulty <= 3 ? '#16a34a' : node!.difficulty <= 6 ? '#d97706' : '#dc2626'}, 
+                  ${node!.difficulty <= 3 ? '#15803d' : node!.difficulty <= 6 ? '#b45309' : '#991b1b'})`,
               }}
               title={`${node!.label}: Level ${node!.difficulty}`}
             />
@@ -109,7 +109,7 @@ export default function LearningPathOutput() {
           >
             <div className="timeline-connector">
               <div className="timeline-dot" style={{
-                background: node!.difficulty <= 3 ? '#22c55e' : node!.difficulty <= 6 ? '#eab308' : '#ef4444',
+                background: node!.difficulty <= 3 ? '#16a34a' : node!.difficulty <= 6 ? '#d97706' : '#dc2626',
               }} />
               {i < pathNodes.length - 1 && <div className="timeline-line" />}
             </div>

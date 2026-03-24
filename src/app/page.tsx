@@ -9,7 +9,7 @@ import DebugPanel from '@/components/DebugPanel';
 import FullscreenVisualizer from '@/components/FullscreenVisualizer';
 import LearningPathOutput from '@/components/LearningPathOutput';
 import { useStore } from '@/store/useStore';
-import { Brain } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   const algorithmResult = useStore((s) => s.algorithmResult);
@@ -20,7 +20,7 @@ export default function Home() {
       <header className="app-header">
         <div className="logo">
           <div className="logo-icon">
-            <Brain size={20} color="white" />
+            <Image src="/BrainLogo.png" alt="PathFinder AI Logo" width={32} height={32} />
           </div>
           <div className="logo-text">
             <span>PathFinder AI</span>
@@ -47,7 +47,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <div className="empty-icon"><Brain size={48} className="theme-icon" /></div>
+              <div className="empty-icon">🧠</div>
               <div className="empty-text">Configure & Generate</div>
               <div className="empty-subtext">
                 Select a track, set your preferences, and click Generate to see the algorithm in action

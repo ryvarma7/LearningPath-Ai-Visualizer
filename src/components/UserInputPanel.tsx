@@ -3,14 +3,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/useStore';
-import { tracks } from '@/data/courses';
-import { Sparkles, Clock, Target, GraduationCap, ChevronDown } from 'lucide-react';
+import { tracks, getRecommendedTracks } from '@/data/courses';
+import { Sparkles, Clock, Target, GraduationCap, ChevronDown, AlertCircle } from 'lucide-react';
 
 const skillLabels = ['Beginner', 'Elementary', 'Intermediate', 'Advanced', 'Expert'];
 
 const formatTimeDisplay = (hours: number) => {
   const days = Math.floor(hours / 24);
-  const remainingHours = hours % 24;
+  const remainingHours = Math.round(hours % 24);
   return `${days}d ${remainingHours}h`;
 };
 
@@ -31,77 +31,7 @@ export default function UserInputPanel() {
         Configure Your Path
       </h2>
 
-      {/* Learning Track Custom Dropdown */}
-      <div className="input-group">
-        <label className="input-label">
-          <Target size={14} />
-          Learning Track
-        </label>
-        <div className="relative w-full">
-          <motion.button
-            onClick={() => setIsTrackMenuOpen(!isTrackMenuOpen)}
-            className="w-full px-6 py-3 bg-gradient-to-r from-slate-800/60 to-slate-800/40 border-2 border-indigo-500/40 rounded-lg text-white font-medium flex items-center justify-between hover:border-indigo-500/80 hover:shadow-lg hover:shadow-indigo-500/20 focus:border-indigo-500 focus:shadow-lg focus:shadow-indigo-500/30 focus:outline-none transition-all duration-200"
-            whileHover={{ scale: 1.01 }}
-            whileTap={{ scale: 0.99 }}
-          >
-            <span className="flex items-center gap-2">
-              <span className="text-indigo-400">{currentTrack?.icon}</span>
-              <span>{currentTrack?.name} ({currentTrack?.nodes.length} topics)</span>
-            </span>
-            <motion.div
-              animate={{ rotate: isTrackMenuOpen ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              <ChevronDown size={20} className="text-indigo-400" />
-            </motion.div>
-          </motion.button>
-
-          <AnimatePresence>
-            {isTrackMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                className="absolute top-full left-0 right-0 mt-2 bg-slate-900/95 border-2 border-indigo-500/40 rounded-lg shadow-xl shadow-indigo-500/20 backdrop-blur-xl z-50 overflow-hidden"
-              >
-                <div className="max-h-80 overflow-y-auto custom-scrollbar">
-                  {tracks.map((track) => (
-                    <motion.button
-                      key={track.id}
-                      onClick={() => {
-                        setPreferences({ goalTrack: track.id, selectedCourse: undefined });
-                        setIsTrackMenuOpen(false);
-                      }}
-                      className={`w-full px-6 py-4 text-left flex items-center gap-3 transition-all duration-150 ${
-                        preferences.goalTrack === track.id
-                          ? 'bg-indigo-500/20 border-l-4 border-indigo-500'
-                          : 'hover:bg-slate-800/50 border-l-4 border-transparent'
-                      }`}
-                      whileHover={{ x: 4 }}
-                    >
-                      <span className="text-2xl">{track.icon}</span>
-                      <div className="flex-1">
-                        <div className="text-white font-medium">{track.name}</div>
-                        <div className="text-sm text-indigo-300">{track.nodes.length} topics • {track.description}</div>
-                      </div>
-                      {preferences.goalTrack === track.id && (
-                        <motion.div
-                          layoutId="activeTrack"
-                          className="w-2 h-2 bg-indigo-400 rounded-full"
-                          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                        />
-                      )}
-                    </motion.button>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
-
-      {/* Skill Level */}
+      {/* Skill Level First */}
       <div className="input-group">
         <label className="input-label">
           <GraduationCap size={14} />
@@ -119,6 +49,97 @@ export default function UserInputPanel() {
           {skillLabels.map((label, i) => (
             <span key={label} className={preferences.skillLevel === i + 1 ? 'active' : ''}>{label}</span>
           ))}
+        </div>
+        
+        {/* Skill level info message */}
+        <div className="mt-2 mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs leading-relaxed text-slate-700 flex gap-2">
+          <AlertCircle size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
+          <div>
+            {preferences.skillLevel === 1 && 'Beginner: Start with foundation courses. Pick one track and focus deeply.'}
+            {preferences.skillLevel === 2 && 'Early Intermediate: Mix of fundamentals and intermediate content. Can explore related tracks.'}
+            {preferences.skillLevel === 3 && 'Intermediate: Access to most courses. Can combine multiple learning paths.'}
+            {preferences.skillLevel === 4 && 'Advanced: Most courses available. Ready for specialized and advanced topics.'}
+            {preferences.skillLevel === 5 && 'Expert: Full access to all courses including highly advanced content.'}
+          </div>
+        </div>
+      </div>
+
+      {/* Learning Track - Now with skill-level filtering */}
+      <div className="input-group">
+        <label className="input-label">
+          <Target size={14} />
+          Learning Track ({getRecommendedTracks(preferences.skillLevel).length} available)
+        </label>
+        <div className="relative w-full">
+          <motion.button
+            onClick={() => setIsTrackMenuOpen(!isTrackMenuOpen)}
+            className="w-full px-6 py-3 bg-white/60 border border-gray-200 rounded-lg text-slate-800 font-medium flex items-center justify-between hover:bg-white/80 hover:border-gray-300 hover:shadow-md focus:border-slate-400 focus:shadow-md focus:outline-none transition-all duration-200 backdrop-blur-sm"
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
+          >
+            <span className="flex items-center gap-2">
+              <span className="text-2xl">{currentTrack?.icon}</span>
+              <span className="text-slate-800">{currentTrack?.name} ({currentTrack?.nodes.length} topics)</span>
+            </span>
+            <motion.div
+              animate={{ rotate: isTrackMenuOpen ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ChevronDown size={20} className="text-slate-600" />
+            </motion.div>
+          </motion.button>
+
+          <AnimatePresence>
+            {isTrackMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="absolute top-full left-0 right-0 mt-2 bg-white/95 border border-gray-200 rounded-lg shadow-lg backdrop-blur-sm z-50 overflow-hidden"
+              >
+                <div className="max-h-80 overflow-y-auto custom-scrollbar">
+                  {tracks.map((track) => {
+                    const isRecommended = getRecommendedTracks(preferences.skillLevel).includes(track.id);
+                    return (
+                      <motion.button
+                        key={track.id}
+                        onClick={() => {
+                          if (isRecommended) {
+                            setPreferences({ goalTrack: track.id, selectedCourse: undefined });
+                            setIsTrackMenuOpen(false);
+                          }
+                        }}
+                        disabled={!isRecommended}
+                        className={`w-full px-6 py-4 text-left flex items-center gap-3 transition-all duration-150 ${
+                          !isRecommended
+                            ? 'opacity-40 cursor-not-allowed bg-gray-50'
+                            : preferences.goalTrack === track.id
+                            ? 'bg-blue-50 border-l-4 border-slate-700'
+                            : 'hover:bg-gray-50 border-l-4 border-transparent'
+                        }`}
+                        whileHover={isRecommended ? { x: 4 } : {}}
+                      >
+                        <span className="text-2xl">{track.icon}</span>
+                        <div className="flex-1">
+                          <div className="text-slate-800 font-semibold">{track.name}</div>
+                          <div className="text-sm text-slate-600">{track.nodes.length} topics • {track.description}</div>
+                          {!isRecommended && <div className="text-xs text-slate-500 mt-1">📚 Unlock at higher skill level</div>}
+                        </div>
+                        {preferences.goalTrack === track.id && isRecommended && (
+                          <motion.div
+                            layoutId="activeTrack"
+                            className="w-2 h-2 bg-slate-700 rounded-full"
+                            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                          />
+                        )}
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 

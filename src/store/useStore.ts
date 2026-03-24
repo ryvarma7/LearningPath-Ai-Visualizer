@@ -3,7 +3,7 @@
 import { create } from 'zustand';
 import { AlgorithmStep, AlgorithmResult, UserPreferences } from '@/algorithms/types';
 import { CourseNode } from '@/data/courses';
-import { tracks } from '@/data/courses';
+import { tracks, filterCoursesBySkillLevel, getRecommendedTracks } from '@/data/courses';
 import { runAStar } from '@/algorithms/astar';
 import { runCSP } from '@/algorithms/csp';
 import { runHillClimbing } from '@/algorithms/hillClimbing';
@@ -82,29 +82,42 @@ export const useStore = create<StoreState>((set, get) => ({
     const track = tracks.find((t) => t.id === preferences.goalTrack);
     if (!track) return;
 
+    // Filter nodes based on skill level
+    const filteredNodes = filterCoursesBySkillLevel(
+      track.nodes,
+      preferences.skillLevel,
+      preferences.timeAvailable
+    );
+
+    // Regenerate edges only for filtered nodes
+    const filteredNodeIds = new Set(filteredNodes.map(n => n.id));
+    const filteredEdges = track.edges.filter(
+      e => filteredNodeIds.has(e.source) && filteredNodeIds.has(e.target)
+    );
+
     let result: AlgorithmResult;
 
     switch (selectedAlgorithm) {
       case 'astar':
-        result = runAStar(track.nodes, track.edges, preferences);
+        result = runAStar(filteredNodes, filteredEdges, preferences);
         break;
       case 'csp':
-        result = runCSP(track.nodes, track.edges, preferences);
+        result = runCSP(filteredNodes, filteredEdges, preferences);
         break;
       case 'hillClimbing':
-        result = runHillClimbing(track.nodes, track.edges, preferences);
+        result = runHillClimbing(filteredNodes, filteredEdges, preferences);
         break;
       case 'genetic':
-        result = runGenetic(track.nodes, track.edges, preferences);
+        result = runGenetic(filteredNodes, filteredEdges, preferences);
         break;
       default:
-        result = runAStar(track.nodes, track.edges, preferences);
+        result = runAStar(filteredNodes, filteredEdges, preferences);
     }
 
     // For comparison mode, also run the comparison algorithm
     let comparisonResult: AlgorithmResult | null = null;
     if (get().comparisonMode) {
-      comparisonResult = runHillClimbing(track.nodes, track.edges, preferences);
+      comparisonResult = runHillClimbing(filteredNodes, filteredEdges, preferences);
     }
 
     set({

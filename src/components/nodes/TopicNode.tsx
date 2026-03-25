@@ -81,17 +81,21 @@ function TopicNode({ data }: NodeProps) {
       animate={{
         scale: isCurrent ? [1, 1.03, 1] : 1,
         opacity: 1,
+        backgroundColor: colors.bg,
+        borderColor: colors.border,
+        boxShadow: colors.shadow,
+        borderWidth: isCurrent ? '2.5px' : '1.5px',
       }}
       transition={isCurrent ? {
         scale: { duration: 1.5, repeat: Infinity, ease: 'easeInOut' },
         opacity: { duration: 0.3 },
+        default: { duration: 0.4, ease: 'easeOut' },
       } : {
-        type: 'spring', stiffness: 300, damping: 25,
+        scale: { type: 'spring', stiffness: 300, damping: 25 },
+        default: { duration: 0.4, ease: 'easeOut' },
       }}
       style={{
-        background: colors.bg,
-        border: `${isCurrent ? '2.5px' : '1.5px'} solid ${colors.border}`,
-        boxShadow: colors.shadow,
+        borderStyle: 'solid',
         borderRadius: '14px',
         padding: '14px 18px',
         minWidth: '220px',

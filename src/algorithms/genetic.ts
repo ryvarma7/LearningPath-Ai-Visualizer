@@ -217,11 +217,8 @@ export function runGenetic(
   const nodeMap = new Map(nodes.map(n => [n.id, n]));
   let stepNumber = 0;
 
-  // Filter relevant nodes
-  const minDifficulty = Math.max(1, (preferences.skillLevel - 1) * 2);
-  const relevantNodes = nodes.filter(n => 
-    n.difficulty >= minDifficulty || n.prerequisites.length === 0
-  );
+  // We use the already-filtered nodes from the track
+  const relevantNodes = nodes;
 
   // Initialize node states
   const nodeStates = new Map<string, NodeState>();
@@ -296,7 +293,7 @@ export function runGenetic(
           stepNumber: stepNumber++,
           algorithmType: 'genetic',
           description: `Gen ${gen}: ${crossoverApplied ? 'Crossover' : 'Copy'} parents (fitness ${parent1.fitness.toFixed(1)} × ${parent2.fitness.toFixed(1)})${mutationApplied ? ' + Mutation' : ''}. Child fitness: ${f.toFixed(1)}`,
-          decisionDetails: `Evolution in action! The algorithm selected two highly successful "parent" paths and combined their best characteristics (${crossoverApplied ? 'Crossover' : 'Copying'}). ${mutationApplied ? 'It also applied random tweaks (Mutation) to introduce fresh variety.' : 'No random mutations occurred this time.'} This produced a new "child" path.`,
+          decisionDetails: `Evolution in action! The algorithm selected two highly successful "parent" paths (Fitness: ${parent1.fitness.toFixed(1)} & ${parent2.fitness.toFixed(1)}) and combined their best characteristics (${crossoverApplied ? 'Crossover' : 'Copying'}). ${mutationApplied ? 'It also applied random tweaks (Mutation) to introduce fresh variety.' : 'No random mutations occurred this time.'} This produced a new "child" path with a fitness score of ${f.toFixed(1)}.`,
           currentNodeId: null,
           nodeStates: cloneNodeStates(nodeStates),
           openList: relevantNodes.map(n => n.id),

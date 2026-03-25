@@ -153,11 +153,8 @@ export function runHillClimbing(
   const maxRestarts = 3;
   let restartCount = 0;
 
-  // Filter relevant nodes
-  const minDifficulty = Math.max(1, (preferences.skillLevel - 1) * 2);
-  const relevantNodes = nodes.filter(n => 
-    n.difficulty >= minDifficulty || n.prerequisites.length === 0
-  );
+  // We use the already-filtered nodes from the track
+  const relevantNodes = nodes;
 
   // Initialize node states
   const nodeStates = new Map<string, NodeState>();
@@ -265,7 +262,7 @@ export function runHillClimbing(
         stepNumber: stepNumber++,
         algorithmType: 'hillClimbing',
         description: `Local Maximum Reached! Restarting... Score: ${currentScore.toFixed(1)}. No better neighbor found.`,
-        decisionDetails: `We reached a "peak" (a Local Maximum) where any small tweak makes the path strictly worse. However, there might be a higher peak elsewhere!`,
+        decisionDetails: `We reached a "peak" (a Local Maximum) where any small tweak makes the path strictly worse. The best neighbor scored ${(scoredNeighbors[0]?.score || 0).toFixed(1)}, which is not greater than our current score of ${currentScore.toFixed(1)}. However, there might be a higher peak elsewhere!`,
         currentNodeId: currentPath[currentPath.length - 1] || null,
         nodeStates: cloneNodeStates(nodeStates),
         openList: [],
@@ -350,7 +347,7 @@ export function runHillClimbing(
         stepNumber: stepNumber++,
         algorithmType: 'hillClimbing',
         description: `Move to better state. New score: ${currentScore.toFixed(1)} (+${(currentScore - (scoredNeighbors[1]?.score || 0)).toFixed(1)})`,
-        decisionDetails: `A neighboring path had a higher score! The algorithm discards the old path and "steps up" to this new variation. It will now repeat the process to see if it can climb even higher.`,
+        decisionDetails: `A neighboring path had a higher score (${currentScore.toFixed(1)}) than our previous path! The algorithm discards the old path and "steps up" to this new variation. It will now repeat the process to see if it can climb even higher.`,
         currentNodeId: currentPath[currentPath.length - 1] || null,
         nodeStates: cloneNodeStates(nodeStates),
         openList: relevantNodes.filter(n => !currentPath.includes(n.id)).map(n => n.id),

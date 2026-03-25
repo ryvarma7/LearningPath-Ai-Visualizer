@@ -279,7 +279,7 @@ export default function StepExplainer() {
                   <Brain size={14} className="step-section-icon" />
                   <span>Why This Decision</span>
                 </div>
-                <p className="step-why-text">{currentStep.decisionDetails}</p>
+                <div className="step-why-text whitespace-pre-wrap">{currentStep.decisionDetails}</div>
               </motion.div>
             </AnimatePresence>
           )}

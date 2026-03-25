@@ -152,17 +152,17 @@ export default function UserInputPanel() {
         <input
           type="range"
           min={50}
-          max={500}
-          step={10}
+          max={2000}
+          step={50}
           value={preferences.timeAvailable}
           onChange={(e) => setPreferences({ timeAvailable: parseInt(e.target.value) })}
           className="slider"
         />
         <div className="slider-labels">
           <span>50h</span>
-          <span>200h</span>
-          <span>350h</span>
           <span>500h</span>
+          <span>1000h</span>
+          <span>2000h</span>
         </div>
       </div>
 

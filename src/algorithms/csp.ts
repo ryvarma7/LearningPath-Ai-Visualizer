@@ -144,11 +144,8 @@ export function runCSP(
   const nodeMap = new Map(nodes.map(n => [n.id, n]));
   let stepNumber = 0;
 
-  // Filter nodes based on skill level
-  const minDifficulty = Math.max(1, (preferences.skillLevel - 1) * 2);
-  const relevantNodes = nodes.filter(n => 
-    n.difficulty >= minDifficulty || n.prerequisites.length === 0
-  );
+  // We use the already-filtered nodes from the track
+  const relevantNodes = nodes;
 
   // Sort by topological order (prerequisites first)
   const sorted = topologicalSort(relevantNodes);
@@ -197,8 +194,13 @@ export function runCSP(
   const assignment = new Map<string, number>();
   let currentHours = 0;
   const resultPath: string[] = [];
+  const MAX_STEPS = 500; // Prevent OOM and infinite freezing with large node sets
 
   function backtrack(currentDomains: Map<string, number[]>): boolean {
+    if (stepNumber >= MAX_STEPS) {
+      return false; // Safety abort
+    }
+
     // Select next unassigned variable (MRV)
     const varId = selectUnassigned(variables, assignment, currentDomains);
     if (!varId) {
@@ -215,7 +217,7 @@ export function runCSP(
       stepNumber: stepNumber++,
       algorithmType: 'csp',
       description: `Try assigning "${node.label}" — domain: [${domain.join(', ')}]`,
-      decisionDetails: `The algorithm picks "${node.label}" to place next, using the Minimum Remaining Values (MRV) heuristic (picking the hardest-to-place course first). It will try inserting it at available positions in its domain.`,
+      decisionDetails: `The algorithm picks "${node.label}" to place next using the Minimum Remaining Values (MRV) heuristic (it only has ${domain.length} valid position(s) left). It will try inserting it at available positions in its domain.`,
       currentNodeId: varId,
       nodeStates: cloneNodeStates(nodeStates),
       openList: variables.filter(v => !assignment.has(v)),
@@ -249,7 +251,7 @@ export function runCSP(
           stepNumber: stepNumber++,
           algorithmType: 'csp',
           description: `Constraint violation: "${node.label}" at position ${position}`,
-          decisionDetails: `CSP cannot place "${node.label}" at position ${position} because it breaks a rule (e.g., missing a prerequisite or exceeding time limit). It will abort this placement and try the next available position.`,
+          decisionDetails: `CSP cannot place "${node.label}" at position ${position} because it breaks rules:\n${violations.map(v => `• ${v}`).join('\n')}\nIt aborts this placement and tries the next available position.`,
           currentNodeId: varId,
           nodeStates: cloneNodeStates(nodeStates),
           openList: variables.filter(v => !assignment.has(v)),
@@ -279,7 +281,7 @@ export function runCSP(
           stepNumber: stepNumber++,
           algorithmType: 'csp',
           description: `Forward check failed for "${node.label}" at position ${position} — dead end`,
-          decisionDetails: `By assigning this position, CSP peeked into the future (Forward Checking) and found that another course would have NO valid positions left. To avoid this guaranteed failure, it rejects this move immediately.`,
+          decisionDetails: `By assigning this position, CSP peeked into the future (Forward Checking) and found a guaranteed dead end. If we do this, another course would physically have 0 valid positions left mathematically. It rejects this move immediately.`,
           currentNodeId: varId,
           nodeStates: cloneNodeStates(nodeStates),
           openList: variables.filter(v => !assignment.has(v)),
@@ -303,7 +305,7 @@ export function runCSP(
         stepNumber: stepNumber++,
         algorithmType: 'csp',
         description: `Assign "${node.label}" → position ${position} ✓`,
-        decisionDetails: `Success! Placing "${node.label}" at position ${position} passes all checks and leaves room for future courses. The algorithm moves forward to the next unassigned course.`,
+        decisionDetails: `Success! Placing "${node.label}" at position ${position} passes all checks:\n• Time constraint: ${currentHours - node.estimatedHours}h + ${node.estimatedHours}h = ${currentHours}h ≤ ${preferences.timeAvailable}h\n• Prerequisites and Difficulty are valid.\nIt moves forward to the next unassigned course.`,
         currentNodeId: varId,
         nodeStates: cloneNodeStates(nodeStates),
         openList: variables.filter(v => !assignment.has(v)),

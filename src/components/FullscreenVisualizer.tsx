@@ -53,23 +53,25 @@ export default function FullscreenVisualizer() {
               </motion.button>
             </div>
 
-            {/* Main content: Graph on top, Explanation on bottom */}
-            <div className="flex-1 overflow-hidden flex flex-col min-h-0">
-              {/* Top - Graph (60%) */}
-              <div className="flex-[3] min-h-0 border-b border-gray-200">
+            {/* Main content: Graph on left, Controls + Explanation on right */}
+            <div className="flex-1 overflow-hidden flex min-h-0">
+              {/* Left - Graph (65%) */}
+              <div className="flex-[65] min-w-0 border-r border-gray-200">
                 <div style={{ width: '100%', height: '100%', display: 'block', position: 'relative' }}>
                   <GraphVisualizer />
                 </div>
               </div>
 
-              {/* Bottom - Controls + Explainer (40%) */}
-              <div className="flex-[2] min-h-0 flex overflow-hidden bg-gradient-to-br from-slate-50/80 to-white">
-                {/* Left - Controls */}
-                <div className="w-80 shrink-0 border-r border-gray-200 overflow-y-auto custom-scrollbar">
-                  <ControlPanel />
+              {/* Right - Controls + Explainer (35%) */}
+              <div className="flex-[35] min-w-0 flex flex-col overflow-hidden bg-gradient-to-br from-slate-50/80 to-white shadow-[-5px_0_15px_-5px_rgba(0,0,0,0.05)] z-10">
+                {/* Top - Controls */}
+                <div className="shrink-0 border-b border-gray-200 bg-white/40 backdrop-blur-md">
+                  <div className="max-h-[30vh] overflow-y-auto custom-scrollbar">
+                    <ControlPanel />
+                  </div>
                 </div>
 
-                {/* Right - Step Explainer */}
+                {/* Bottom - Step Explainer */}
                 <div className="flex-1 overflow-y-auto custom-scrollbar">
                   <StepExplainer />
                 </div>

@@ -32,7 +32,7 @@ const statusEdgeColors: Record<string, string> = {
 
 // Helper component to handle automatic zooming to active nodes
 function CameraUpdater({ currentStep, isFinished, nodes }: { currentStep: any; isFinished: boolean; nodes: Node[] }) {
-  const { setCenter, fitView } = useReactFlow();
+  const { setCenter, fitView, getZoom } = useReactFlow();
 
   useEffect(() => {
     if (!currentStep) return;
@@ -44,30 +44,27 @@ function CameraUpdater({ currentStep, isFinished, nodes }: { currentStep: any; i
     }
 
     // Find nodes that are actively being evaluated right now
-    const activeStates = ['current', 'exploring'];
-    const focusNodes = nodes.filter((n) => {
-      const status = currentStep.nodeStates.get(n.id)?.status;
-      return status && activeStates.includes(status);
-    });
+    const currentNode = nodes.find(n => currentStep.nodeStates.get(n.id)?.status === 'current');
+    const exploringNodes = nodes.filter(n => currentStep.nodeStates.get(n.id)?.status === 'exploring');
 
-    if (focusNodes.length > 0) {
-      if (focusNodes.length === 1) {
-        // Center on the single active node
-        const nodeWidth = 260;
-        const nodeHeight = 160;
-        const x = focusNodes[0].position.x + nodeWidth / 2;
-        const y = focusNodes[0].position.y + nodeHeight / 2;
-        setCenter(x, y, { zoom: 1.1, duration: 800 });
-      } else {
-        // Fit view around multiple active nodes
-        fitView({ nodes: focusNodes, duration: 800, padding: 0.5, maxZoom: 1.1 });
-      }
+    // Always follow exactly one single node to avoid zooming out and zooming in bouncing
+    const targetNode = currentNode || (exploringNodes.length > 0 ? exploringNodes[0] : null);
+
+    if (targetNode) {
+      // Center on the active node
+      const nodeWidth = 260;
+      const nodeHeight = 160;
+      const x = targetNode.position.x + nodeWidth / 2;
+      const y = targetNode.position.y + nodeHeight / 2;
+      
+      // Use a consistent zoom level so we only pan smoothly instead of zooming out and in
+      setCenter(x, y, { zoom: 1.2, duration: 800 });
     } else if (currentStep.stepNumber === 0) {
       // If at the very start, zoom to fit all to show initial state
       fitView({ duration: 800, padding: 0.3 });
     }
     // Otherwise, do nothing and keep the camera focused where it was.
-  }, [currentStep, isFinished, nodes, setCenter, fitView]);
+  }, [currentStep, isFinished, nodes, setCenter, fitView, getZoom]);
 
   return null;
 }
@@ -103,8 +100,11 @@ export default function GraphVisualizer() {
     const sortedTiers = Array.from(tiers.entries()).sort((a, b) => a[0] - b[0]);
 
     sortedTiers.forEach(([tier, tierNodes], tierIdx) => {
-      const tierWidth = tierNodes.length * 260;
-      const startX = -tierWidth / 2 + 130;
+      const spacingX = 380; // Increased horizontal spacing
+      const spacingY = 260; // Increased vertical spacing
+      
+      // Center the tier on x=0
+      const startX = -((tierNodes.length - 1) * spacingX) / 2;
 
       tierNodes.forEach((courseNode, nodeIdx) => {
         const status: NodeStatus = currentStep?.nodeStates.get(courseNode.id)?.status || 'unexplored';
@@ -113,7 +113,7 @@ export default function GraphVisualizer() {
         nodes.push({
           id: courseNode.id,
           type: 'topicNode',
-          position: { x: startX + nodeIdx * 260, y: tierIdx * 160 },
+          position: { x: startX + nodeIdx * spacingX, y: tierIdx * spacingY },
           data: {
             label: courseNode.label,
             difficulty: courseNode.difficulty,
@@ -164,6 +164,7 @@ export default function GraphVisualizer() {
           stroke: statusEdgeColors[edgeStatus],
           strokeWidth: edgeStatus === 'selected' ? 4 : edgeStatus === 'unexplored' ? 2 : 3,
           opacity: edgeStatus === 'unexplored' ? 0.5 : 1,
+          transition: 'stroke 0.4s ease, stroke-width 0.4s ease, opacity 0.4s ease',
         },
         markerEnd: {
           type: MarkerType.ArrowClosed,

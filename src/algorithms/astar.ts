@@ -95,11 +95,8 @@ export function runAStar(
     adjacency.set(edge.source, targets);
   }
 
-  // Filter nodes based on skill level — skip nodes way below user's level
-  const minDifficulty = Math.max(1, (preferences.skillLevel - 1) * 2);
-  const targetNodes = nodes
-    .filter(n => n.difficulty >= minDifficulty || n.prerequisites.length === 0)
-    .map(n => n.id);
+  // Use all filtered nodes as target nodes so we don't accidentally skip any
+  const targetNodes = nodes.map(n => n.id);
 
   // Find start nodes (no prerequisites)
   const startNodes = nodes.filter(n => n.prerequisites.length === 0);
@@ -145,7 +142,7 @@ export function runAStar(
     stepNumber: stepNumber++,
     algorithmType: 'astar',
     description: `Initialize: ${openList.length} start node(s) in open list`,
-    decisionDetails: `A* Search begins by finding all courses that have no prerequisites. It has found ${openList.length} such courses and placed them on the open list to be evaluated.`,
+    decisionDetails: `A* Search begins by picking courses with no prerequisites. It found ${openList.length}. For each, it calculates f = g + h, where 'g' is the base difficulty and 'h' is the estimated difficulty remaining to learn all other courses.`,
     currentNodeId: null,
     nodeStates: cloneNodeStates(nodeStates),
     openList: openList.map(n => n.id),
@@ -202,7 +199,7 @@ export function runAStar(
       stepNumber: stepNumber++,
       algorithmType: 'astar',
       description: `Expand "${currentNode.label}" — f(n)=${current.fScore.toFixed(1)}, g(n)=${current.gScore.toFixed(1)}, h(n)=${current.hScore.toFixed(1)}`,
-      decisionDetails: `A* selects "${currentNode.label}" because it has the lowest total estimated cost (f-score = ${current.fScore.toFixed(1)}) on the open list. The f-score is the sum of the actual cost to reach here (g=${current.gScore.toFixed(1)}) and the heuristic estimate to finish the path (h=${current.hScore.toFixed(1)}).`,
+      decisionDetails: `A* selects "${currentNode.label}" because it has the lowest total estimated cost on the open list:\nCalculation: f(${current.fScore.toFixed(1)}) = g(${current.gScore.toFixed(1)}) + h(${current.hScore.toFixed(1)}).\nThe algorithm always prioritizes the path with the mathematically lowest f-score.`,
       currentNodeId: current.id,
       nodeStates: cloneNodeStates(nodeStates),
       openList: openList.map(n => n.id),
@@ -261,7 +258,7 @@ export function runAStar(
         stepNumber: stepNumber++,
         algorithmType: 'astar',
         description: `Evaluate ${neighbors.length} neighbor(s) of "${currentNode.label}": ${neighbors.map(n => nodeMap.get(n)?.label).join(', ')}`,
-        decisionDetails: `Now that "${currentNode.label}" is selected, A* discovers ${neighbors.length} new unlocked courses. It calculates the g, h, and f scores for each of them and adds them to the open list for future consideration.`,
+        decisionDetails: `"${currentNode.label}" unlocks ${neighbors.length} new course(s). A* calculates their scores. Their new g-score is the current g-score (${current.gScore.toFixed(1)}) plus the difficulty jump. Then it estimates their brand new h-score, adds them together, and puts them on the open list.`,
         currentNodeId: current.id,
         nodeStates: cloneNodeStates(nodeStates),
         openList: openList.map(n => n.id),

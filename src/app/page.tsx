@@ -26,7 +26,6 @@ export default function Home() {
             <span>AI Personalized Learning Path Generator</span>
           </div>
         </div>
-        <div className="header-badge">Intelligent Education v1.0</div>
       </header>
 
       {/* Main Layout */}

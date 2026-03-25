@@ -41,11 +41,6 @@ interface StoreState {
   totalSteps: number;
   isComplete: boolean;
 
-  // Comparison mode
-  comparisonMode: boolean;
-  toggleComparisonMode: () => void;
-  comparisonResult: AlgorithmResult | null;
-
   // Fullscreen modal
   isFullscreenMode: boolean;
   setFullscreenMode: (isOpen: boolean) => void;
@@ -114,15 +109,8 @@ export const useStore = create<StoreState>((set, get) => ({
         result = runAStar(filteredNodes, filteredEdges, preferences);
     }
 
-    // For comparison mode, also run the comparison algorithm
-    let comparisonResult: AlgorithmResult | null = null;
-    if (get().comparisonMode) {
-      comparisonResult = runHillClimbing(filteredNodes, filteredEdges, preferences);
-    }
-
     set({
       algorithmResult: result,
-      comparisonResult,
       currentStepIndex: 0,
       isPlaying: false,
       isFullscreenMode: true,
@@ -176,11 +164,6 @@ export const useStore = create<StoreState>((set, get) => ({
     if (!algorithmResult) return false;
     return currentStepIndex >= algorithmResult.steps.length - 1;
   },
-
-  // Comparison mode
-  comparisonMode: false,
-  toggleComparisonMode: () => set((state) => ({ comparisonMode: !state.comparisonMode })),
-  comparisonResult: null,
 
   // Fullscreen modal
   isFullscreenMode: false,

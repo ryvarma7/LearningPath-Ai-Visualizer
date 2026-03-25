@@ -34,8 +34,6 @@ export default function ControlPanel() {
     stepForward,
     stepBackward,
     reset,
-    comparisonMode,
-    toggleComparisonMode,
     generatePath,
   } = useStore();
 
@@ -163,17 +161,6 @@ export default function ControlPanel() {
           />
           <span className="speed-label">{speed}x</span>
         </div>
-
-        {/* Comparison mode toggle */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={toggleComparisonMode}
-          className={`control-btn comparison-btn ${comparisonMode ? 'active' : ''}`}
-          title="Compare A* vs Hill Climbing"
-        >
-          <GitCompare size={16} />
-        </motion.button>
       </div>
     </motion.div>
   );

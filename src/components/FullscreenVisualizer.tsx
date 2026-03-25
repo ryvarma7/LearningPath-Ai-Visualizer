@@ -34,7 +34,7 @@ export default function FullscreenVisualizer() {
             <div className="bg-slate-50 backdrop-blur-sm border-b border-gray-200 px-6 py-3 flex items-center justify-between shrink-0">
               <div className="flex items-center gap-3">
                 <h2 className="text-xl font-bold bg-gradient-to-r from-slate-700 to-slate-600 bg-clip-text text-transparent">
-                  Algorithm Visualizer
+                  AI Personalized Learning Path Generator
                 </h2>
                 <div className="relative group cursor-help">
                   <Info size={18} className="text-slate-500 hover:text-slate-700 transition" />

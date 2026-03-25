@@ -20,13 +20,13 @@ export default function Home() {
       <header className="app-header">
         <div className="logo">
           <div className="logo-icon">
-            <Image src="/BrainLogo.png" alt="PathFinder AI Logo" width={32} height={32} />
+            <Image src="/BrainLogo.png" alt="AI Personalized Learning Path Generator Logo" width={32} height={32} />
           </div>
           <div className="logo-text">
-            <span>PathFinder AI</span>
+            <span>AI Personalized Learning Path Generator</span>
           </div>
         </div>
-        <div className="header-badge">Algorithm Visualizer v1.0</div>
+        <div className="header-badge">Intelligent Education v1.0</div>
       </header>
 
       {/* Main Layout */}
@@ -47,7 +47,6 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
-              <div className="empty-icon">🧠</div>
               <div className="empty-text">Configure & Generate</div>
               <div className="empty-subtext">
                 Select a track, set your preferences, and click Generate to see the algorithm in action

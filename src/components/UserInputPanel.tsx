@@ -8,10 +8,18 @@ import { Sparkles, Clock, Target, GraduationCap, ChevronDown, AlertCircle } from
 
 const skillLabels = ['Beginner', 'Elementary', 'Intermediate', 'Advanced', 'Expert'];
 
-const formatTimeDisplay = (hours: number) => {
-  const days = Math.floor(hours / 24);
-  const remainingHours = Math.round(hours % 24);
-  return `${days}d ${remainingHours}h`;
+const formatTimeDisplay = (totalHours: number) => {
+  // Assuming a rigorous commitment of 20 hours of study per week (approx 80h/month)
+  const totalMonths = Math.max(1, Math.floor(totalHours / 80));
+  const years = Math.floor(totalMonths / 12);
+  const remainingMonths = totalMonths % 12;
+
+  let display = '';
+  if (years > 0) display += `${years} yr${years !== 1 ? 's' : ''} `;
+  if (remainingMonths > 0) display += `${remainingMonths} mo${remainingMonths !== 1 ? 's' : ''}`;
+  
+  if (!display) return '1 mo (~20h/wk)';
+  return display.trim() + ' (~20h/wk)';
 };
 
 export default function UserInputPanel() {
@@ -151,18 +159,18 @@ export default function UserInputPanel() {
         </label>
         <input
           type="range"
-          min={50}
-          max={2000}
-          step={50}
+          min={80}
+          max={1920}
+          step={80}
           value={preferences.timeAvailable}
           onChange={(e) => setPreferences({ timeAvailable: parseInt(e.target.value) })}
           className="slider"
         />
         <div className="slider-labels">
-          <span>50h</span>
-          <span>500h</span>
-          <span>1000h</span>
-          <span>2000h</span>
+          <span>1 mo</span>
+          <span>6 mo</span>
+          <span>1 yr</span>
+          <span>2 yrs</span>
         </div>
       </div>
 

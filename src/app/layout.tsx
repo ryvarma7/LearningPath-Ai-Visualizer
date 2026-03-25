@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Learning Path Visualizer — Personalized Learning with AI Algorithms",
+  title: "AI Personalized Learning Path Generator — Optimized Learning with Algorithms",
   description: "Generate optimized learning paths using A*, CSP, Hill Climbing, and Genetic Algorithms. Visualize every step of the algorithm in real-time with interactive graph exploration.",
   keywords: ["AI", "learning path", "algorithm visualization", "A*", "machine learning", "DSA", "DevOps"],
   icons: {

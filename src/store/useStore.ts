@@ -56,7 +56,7 @@ export const useStore = create<StoreState>((set, get) => ({
   preferences: {
     skillLevel: 1,
     goalTrack: 'aiml',
-    timeAvailable: 200,
+    timeAvailable: 480,
     learningStyle: 'mixed',
     selectedCourse: undefined,
   },

@@ -186,7 +186,7 @@ export function runAStar(
       });
       continue;
     }
-
+////////Test Run
     // Select this node
     closedSet.add(current.id);
     bestPath.push(current.id);
